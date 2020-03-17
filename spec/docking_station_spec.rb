@@ -16,7 +16,6 @@ describe DockingStation do
     end
 =end
     it { is_expected.to respond_to(:docker).with(1).argument}
-    it { is_expected.to respond_to(:contents)}
-
+    it { is_expected.to have_attributes(:storage => be_an_instance_of(Array))}
 
 end

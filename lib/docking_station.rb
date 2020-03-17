@@ -2,15 +2,22 @@ require './lib/bike'
 
 class DockingStation
 
+  attr_reader :storage
+  attr_writer :storage
+
+  def initialize
+    @storage = []
+  end
+
+
   def release_bike
     Bike.new
   end
 
   def docker(bike)
-    @dock.push(bike)
+    @storage.push(bike)
+    bike.check_in_status = true
   end
 
-def contents
-end
 
 end
