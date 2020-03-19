@@ -12,7 +12,8 @@ class DockingStation
     Bike.new
   end
 
-  def docker(bike)
+  def dock_bike(bike)
+    raise "docking station at capacity" if @storage.length > 0
     @storage.push(bike)
   end
 end
