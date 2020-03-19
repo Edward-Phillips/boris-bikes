@@ -1,26 +1,18 @@
 require './lib/bike'
 
 class DockingStation
-
-  attr_reader :storage
-  attr_writer :storage
+  attr_accessor :storage
 
   def initialize
     @storage = []
   end
 
-
   def release_bike
-    if @storage.length > 0
-      Bike.new
-    else
-      raise "no bikes available"
-    end
+    raise "no bikes available" if @storage.length == 0
+    Bike.new
   end
 
   def docker(bike)
     @storage.push(bike)
   end
-
-
 end
