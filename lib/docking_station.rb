@@ -13,17 +13,29 @@ class DockingStation
       @storage.length >= DEFAULT_CAPACITY
     end
 
-    def empty?
-      @storage.length == 0
+    def has_no_working_bikes?
+      @storage.filter { |bike| bike.working }.empty?
     end
+
+    def find_working_bike
+      @storage.find { |bike| bike.working }
+    end
+
+    def retrieve_working_bike
+      bike = find_working_bike
+      @storage.delete(bike)
+      bike
+    end
+
   public
     def release_bike
-      raise "no bikes available" if empty?
-      Bike.new
+      raise "no bikes available" if has_no_working_bikes?
+      retrieve_working_bike
     end
 
     def dock_bike(bike)
       raise "docking station at capacity" if full?
       @storage.push(bike)
+      bike.working ? nil : "This bike is broken"
     end
 end

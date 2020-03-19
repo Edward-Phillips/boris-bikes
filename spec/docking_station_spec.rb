@@ -13,7 +13,7 @@ describe DockingStation do
     bike = Bike.new
 
     it 'bike should respond to working?' do
-      expect(bike).to be_working
+      expect(bike).to respond_to :working
     end
 
     dock.dock_bike(bike)
@@ -37,4 +37,22 @@ describe DockingStation do
       expect(DockingStation.new).to respond_to :capacity
     end
 
+    it "should tell you that a broken bike is broken when you dock it" do
+      dock = DockingStation.new
+      bike.working = false
+      expect(dock.dock_bike(bike)).to eq 'This bike is broken'
+    end
+
+    it "should tell you nothing when a working bike is docked" do
+      dock = DockingStation.new
+      bike.working = true
+      expect(dock.dock_bike(bike)).to be_nil
+    end
+
+    it 'does not release broken bikes' do
+      dock = DockingStation.new
+      bike.working = false
+      dock.dock_bike(bike)
+      expect { dock.release_bike }.to raise_error "no bikes available"
+    end
 end
