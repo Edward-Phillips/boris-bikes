@@ -28,4 +28,13 @@ describe DockingStation do
       end
       expect{dock.dock_bike(bike)}.to raise_error "docking station at capacity"
     end
+
+    it "should be able to specify capacity of docking station at creation" do
+      expect(DockingStation).to respond_to(:new).with(1).argument
+    end
+
+    it "should have a capacity" do
+      expect(DockingStation.new).to respond_to :capacity
+    end
+
 end
