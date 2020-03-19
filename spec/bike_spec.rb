@@ -6,5 +6,4 @@ describe Bike do
 
 
 
-    it { is_expected.to have_attributes(:check_in_status => be_in[true, false])}
   end

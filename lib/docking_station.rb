@@ -16,7 +16,6 @@ class DockingStation
 
   def docker(bike)
     @storage.push(bike)
-    bike.check_in_status = true
   end
 
 
