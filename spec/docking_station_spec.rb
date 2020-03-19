@@ -3,9 +3,18 @@ require 'docking_station'
 describe DockingStation do
 #  subject(:NewDockingStation) { described_class.new}
 
-    dock = DockingStation.new
+
+
+    it "docking station should not release a bike when there are none stored" do
+      dock = DockingStation.new
+      expect{ dock.release_bike }.to raise_error "no bikes available"
+    end
+
     it { should respond_to :release_bike }
-    bike = dock.release_bike
+
+      dock = DockingStation.new
+      bike = Bike.new
+
     it 'bike should respond to working?' do
       expect(bike).to be_working
     end

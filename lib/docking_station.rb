@@ -11,7 +11,11 @@ class DockingStation
 
 
   def release_bike
-    Bike.new
+    if @storage.length > 0
+      Bike.new
+    else
+      raise "no bikes available"
+    end
   end
 
   def docker(bike)
