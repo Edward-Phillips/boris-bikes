@@ -7,13 +7,22 @@ class DockingStation
     @storage = []
   end
 
-  def release_bike
-    raise "no bikes available" if @storage.length == 0
-    Bike.new
-  end
+  private
+    def full?
+      @storage.length >= 20
+    end
 
-  def dock_bike(bike)
-    raise "docking station at capacity" if @storage.length >= 20
-    @storage.push(bike)
-  end
+    def empty?
+      @storage.length == 0
+    end
+  public
+    def release_bike
+      raise "no bikes available" if empty?
+      Bike.new
+    end
+
+    def dock_bike(bike)
+      raise "docking station at capacity" if full?
+      @storage.push(bike)
+    end
 end
