@@ -23,7 +23,7 @@ describe DockingStation do
     it { is_expected.to have_attributes(:storage => be_an_instance_of(Array))}
 
     it "should not dock  a bike when full" do
-      19.times do
+      (DockingStation::DEFAULT_CAPACITY - 1).times do
         dock.dock_bike(Bike.new)
       end
       expect{dock.dock_bike(bike)}.to raise_error "docking station at capacity"

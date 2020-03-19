@@ -2,14 +2,14 @@ require './lib/bike'
 
 class DockingStation
   attr_accessor :storage
-
+  DEFAULT_CAPACITY = 20
   def initialize
     @storage = []
   end
 
   private
     def full?
-      @storage.length >= 20
+      @storage.length >= DEFAULT_CAPACITY
     end
 
     def empty?
